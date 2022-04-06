@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 
-function UploadForm() {
+function UploadForm(props) {
     let [file, setFile] = useState(null);
     let [error, setError] = useState(null);
-    let [images, setImages] = useState([]);
+    let [images, setImages] = props.imageState;
 
     const types = ["image/png", "image/jpeg", "image/gif"];
 
@@ -16,15 +16,15 @@ function UploadForm() {
         if (selectedFile) {
             fileType = selectedFile.type;
 
-            if (types.indexOf(fileType) != -1) {
+            if (types.indexOf(fileType) !== -1) {
                 // file type is valid
                 setFile(selectedFile)
                 setError(null)
-                setImages([...images, selectedFile.name]);
+                setImages([selectedFile.name, ...images]);
             }else {
                 // file type is invalid
                 setFile(null)
-                setError("Please select an image file (png or jpeg");
+                setError("Please select an image file (png, jpeg or gif");
                 // setImage(null);
             }
         }
@@ -44,17 +44,8 @@ function UploadForm() {
 
                 {error && <div className="error-panel">{error}</div>}
                 {file && <div>{file.name}</div>}
-                
             </form>
-
-           
-
-            {images.map((image, index) => {
-                return <img key={index} src={"/" + image} className="image" />
-            })}
-            
-        </div>
-       
+        </div>      
     )
 }
 
