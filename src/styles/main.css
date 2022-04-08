@@ -248,4 +248,7 @@ form {
     .image-modal img {
         width: 90vw;
     }
+    .container {
+        width: 90vw;
+    }
 }
