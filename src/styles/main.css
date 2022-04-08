@@ -18,8 +18,13 @@ body {
     margin: 0 auto;
 }
 .navbar {
-    width: 80vw;
+    /* width: 80vw; */
     margin: auto;    
+}
+
+.container {
+    width: 80vw;
+    margin: auto;  
 }
 
 
@@ -27,9 +32,48 @@ body {
     color: #0088ff;
 }
 
+.btn {
+    width: fit-content;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    cursor: pointer;
+    box-shadow: none;
+    border: 1px solid transparent;
+    font-weight: bold;
+}
+
+.btn.btn-danger {
+    background-color: red;
+    color: white;
+}
+
+.btn.btn-danger.btn-outlined {
+    border-color: red;
+    background: transparent;
+    color: red;
+}
+
+.btn.btn-danger.btn-outlined:hover {
+    background-color: red;
+    color: white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.upload_form {
+    padding: 10px 0 10px 0;
+}
+
 .gallery  {
     margin: auto;
-    width: 80vw;
+    /* width: 80vw; */
     padding-top: 60px;
 }
 
