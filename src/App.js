@@ -3,7 +3,7 @@ import Gallery from "./components/gallery";
 
 function App() {
   return (
-    <div className="App min-height-full">
+    <div className="App min-height-full container">
       <NavBar />
       <Gallery />
     </div>
