@@ -116,18 +116,24 @@ function Gallery() {
                                 backgroundImage: `url(${image})`
                             }}
                         >
+                        
+                            {/* cover container */}
+
                             <div 
                                 className="img-container-cover"
                                 onClick={handleModalReqClick}
                             >
-                            </div>
+                            </div>   
 
-                            <button 
+                             {/* deletion button */}
+
+                            <span 
                                 imgindex={index} 
                                 onClick={deleteOneHandleClick}
+                                className="btn img-del-button"
                             >
-                                Delete
-                            </button>
+                                x
+                            </span>                         
                         </div>
                     )
                 })}
