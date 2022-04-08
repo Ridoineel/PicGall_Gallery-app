@@ -4,7 +4,7 @@ const {dirname, join} = require("path")
 const multerConfig = require("../midllewares/multer-config");
 const filemanager = require("../utils/files")
 
-router.post("/", multerConfig, (req, res) => {
+router.post("/", multerConfig, async (req, res) => {
     /* upload image file */
 
     let {uploaded_image, success} = req.upload_playload;
@@ -12,16 +12,13 @@ router.post("/", multerConfig, (req, res) => {
 
     if (!success) {
         // delete this file
-
         if (filemanager.delete(join(dirname(__dirname), path))) {
             console.log("success");
 
             res.status(404).json({
                 error_message: "invalid file extension (would be jpg, png or gif"
             })
-        
-        }
-        else {
+        }else {
             console.log("error");
 
             res.status(504).json({
@@ -45,7 +42,7 @@ router.post("/", multerConfig, (req, res) => {
 
 // get
 
-router.get("/all ", (req, res) => {
+router.get("/all", (req, res) => {
     /* Get all images files != untitled filed 
     *
     */

@@ -1,14 +1,14 @@
 const fs = require("fs");
 const {join} = require("path");
 
-const del =  (path) => {
+const del =  async (path) => {
     fs.rm(path, (err, data) => {
         if (!err) {
             // success
-            return false;
+            return true;
         }else{
             // fall
-            return true;
+            return false;
         }
     });
 } 
