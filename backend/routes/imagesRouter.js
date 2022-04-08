@@ -2,6 +2,7 @@ const router = require("express").Router()
 const fs = require("fs");
 const {dirname, join} = require("path")
 const multerConfig = require("../midllewares/multer-config");
+const filemanager = require("../utils/files")
 
 router.post("/", multerConfig, (req, res) => {
     /* upload image file */
@@ -11,22 +12,22 @@ router.post("/", multerConfig, (req, res) => {
 
     if (!success) {
         // delete this file
-        fs.rm(join(dirname(__dirname), path), (err, b) => {
-            if (!err) {
-                console.log(`image is deleted: ${path}`)
-                
-                res.status(404).json({
-                    error_message: "invalid file extension (would be jpg, png or gif"
-                })
-            
-            }else{
-                console.error("Image deletion error")
-                
-                res.status(504).json({
-                    status: 504,
-                })
-            }
-        });
+
+        if (filemanager.delete(join(dirname(__dirname), path))) {
+            console.log("success");
+
+            res.status(404).json({
+                error_message: "invalid file extension (would be jpg, png or gif"
+            })
+        
+        }
+        else {
+            console.log("error");
+
+            res.status(504).json({
+                status: 504,
+            })
+        }
      }else {
         if (path && filename && truename) {
             // all right, return path
@@ -75,34 +76,15 @@ router.delete("/", (req, res) => {
     *
     */
 
-    fs.readdir(join(dirname(__dirname), "images"), (err, files) => {
-        if (!err) {
-            files.forEach((filename) => {
-                if (filename != "untitled") {
-                    // delete image
-
-                    fs.rm(join(dirname(__dirname), "images", filename), (err, data) => {
-                        if (!err) {
-                            console.log(`image ${filename} is deleted`)
-                        }else{
-                            console.error(`Image ${filename} deletion error`, err);
-                        }
-                    })
-                }
-            })
-            
-            res.json({
-                success: true,    
-            })
-            
-        } else {
-            console.log(err);
-
-            res.status(504).json({
-                status: 504,
-            });
-        }     
-    })
+    if (filemanager.deleteAll(join(dirname(__dirname), "images"))) {
+        res.json({
+            success: true,    
+        })
+    }else {
+        res.status(504).json({
+            status: 504,
+        });
+    }
 }) 
 
 router.delete("/:filename", (req, res) => {
@@ -114,17 +96,15 @@ router.delete("/:filename", (req, res) => {
     let filename = req.params.filename;
 
     if (filename) {
-        fs.rm(join(dirname(__dirname), "images", filename), (err, data) => {
-            if (!err) {
-                console.log(`image ${filename} is deleted`)
+        if (filemanager.delete(join(dirname(__dirname), "images", filename))) {
+            console.log(`image ${filename} is deleted`)
             
-                res.json({
-                    success: true,    
-                })
-            }else{
-                console.error(`Image ${filename} deletion error`);
-            }
-        })
+            res.json({
+                success: true,    
+            })
+        }else {
+            console.error(`Image ${filename} deletion error`);
+        }
     }else {
         res.status(404).json({
             success: false,
