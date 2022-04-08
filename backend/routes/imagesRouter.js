@@ -42,7 +42,7 @@ router.post("/", multerConfig, async (req, res) => {
 
 // get
 
-router.get("/all", (req, res) => {
+router.get("/", (req, res) => {
     /* Get all images files != untitled filed 
     *
     */

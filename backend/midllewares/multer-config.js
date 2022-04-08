@@ -34,10 +34,10 @@ const storage = multer.diskStorage({
 
         if (extension) {
             success = true;
-            new_filename = `${truename}_${Date.now()}.${extension}`;
+            new_filename = `${Date.now()}_${truename}.${extension}`;
         }else {
             success = false;
-            new_filename = `${truename}_${Date.now()}`;
+            new_filename = `${Date.now()}_${truename}`;
         }
 
 
