@@ -23,10 +23,8 @@ function UploadForm(props) {
                 // file type is valid
                 setFile(selectedFile)
                 setError(null)
-                //setImages([selectedFile.name, ...images]);
                 
                 let fd = new FormData();
-
                 fd.append("image", selectedFile, selectedFile.name);
 
                 try {
@@ -45,7 +43,7 @@ function UploadForm(props) {
     }
 
     return (
-        <div>
+        <div className="upload_form">
              <form>
                 <label>
                     <input 
