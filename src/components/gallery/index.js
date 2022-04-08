@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import UploadForm from "../uploadForm"
 import ImageModal from "../imageModal";
+import axios from "axios";
 
 function Gallery() {
     let [images, setImages] = useState([]);
@@ -14,8 +15,25 @@ function Gallery() {
         if (image) {
             setModal(<ImageModal url={image} setModal={setModal} />)
         }
-
     }
+
+    useEffect(async () => {
+        // load images
+
+        let res;
+        let imagesList;
+
+        try {
+            res = await axios.get("http://localhost:8080/images");
+            
+            imagesList = res.data
+            imagesList.reverse()
+
+            setImages(imagesList)
+        }catch (err) {
+            console.log(err)
+        }
+    }, [])
 
     return (
         <div className="gallery">
@@ -28,7 +46,7 @@ function Gallery() {
                 </div>
             </div>
 
-            <UploadForm imageState={[images, setImages]}/>
+            <UploadForm imagesState={[images, setImages]}/>
 
             <div className="gallery-body">
                 {images.map((image, index) => {
@@ -36,10 +54,10 @@ function Gallery() {
                     return (
                         <div 
                             className="img-container"
-                            image={"/" + image}
+                            image={image}
                             key={index}
                             style={{
-                                backgroundImage: `url(${"/" + image})`
+                                backgroundImage: `url(${image})`
                             }}
                             onClick={handleClick}
                         >
