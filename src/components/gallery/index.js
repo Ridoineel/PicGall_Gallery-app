@@ -115,7 +115,7 @@ function Gallery() {
                     <motion.div 
                         layout
                         initial={{opacity: 0.85}}
-                        whileHover={{scale: 1.02, opacity: 1}}
+                        whileHover={{scale: 1.02, opacity: 1, rotate: 1}}
                        
                         className="img-container"
                         image={image}
