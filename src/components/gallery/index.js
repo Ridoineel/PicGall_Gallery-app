@@ -94,8 +94,7 @@ function Gallery() {
                 <h1>Your Pictures</h1>
 
                 <div>
-                    Lorem Ipsum dolor sit amet, 
-                    consecteur adipiscing elit.
+                    Lorem Ipsum dolor sit amet, a description...
                 </div>
             </div>
 
@@ -106,7 +105,7 @@ function Gallery() {
                     className="btn btn-danger btn-outlined"
                     onClick={deleteAllHandleClick}
                 >
-                    Delete all image
+                    Delete all images
                 </button>
             </div>
             
