@@ -71,6 +71,44 @@ body {
     padding: 10px 0 10px 0;
 }
 
+form {
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-input-label {
+    display: inline-block;
+    text-align: center;
+    width: fit-content;
+    padding: 10px;
+    border: 2px solid var(--primary);
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.file-input-label:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.error-panel {
+    color: var(--error);
+    width: fit-content;
+    /*max-width: 300px;*/
+    text-align: center;
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid var(--error);
+    border-radius: 5px;
+}
+
 .progress-bar {
     height: 5px;
     width: 100%;
@@ -182,44 +220,6 @@ body {
 
 .min-height-full {
     height: 100vh;
-}
-
-.error-panel {
-    color: var(--error);
-    width: fit-content;
-    /*max-width: 300px;*/
-    text-align: center;
-    padding: 5px;
-    margin-top: 5px;
-    border: 1px solid var(--error);
-    border-radius: 5px;
-}
-
-form {
-    text-align: center;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.file-input {
-    display: none;
-}
-
-.file-input-label {
-    display: inline-block;
-    text-align: center;
-    
-    width: fit-content;
-    padding: 10px;
-    border: 1px solid var(--primary);
-
-    border-radius: 50%;
-}
-
-.file-input-label:hover {
-    background-color: var(--primary);
 }
 
 @keyframes fromTop {

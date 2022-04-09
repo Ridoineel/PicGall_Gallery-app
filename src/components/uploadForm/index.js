@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 import ProgressBar from "../progressBar";
 
 
@@ -58,7 +59,14 @@ function UploadForm(props) {
                         onChange={handleChange} 
                         className="file-input"
                     />
-                    <span className="file-input-label">+</span>
+
+                    {/* Add button */}
+                    <motion.span 
+                        whileHover={{scale: 1.2, rotate: 180}}
+                        className="file-input-label"
+                    >
+                        +
+                    </motion.span>
                 </label>
 
                 {error && <div className="error-panel">{error}</div>}
