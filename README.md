@@ -28,4 +28,4 @@ npm start
 ```
 
 ## Futures
-* Extended to all usages (user account and her gallery)
+* Extend to all usages (user account and her gallery)
