@@ -1,0 +1,281 @@
+:root {
+    --primary: #0088ff;
+    --secondary: #4e4e4e;
+    --error: #ff4a4a;
+}
+
+body {
+    color: var(--secondary);
+}
+
+#root, .App {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.App {
+    margin: 0 auto;
+}
+.navbar {
+    /* width: 80vw; */
+    margin: auto;    
+}
+
+.container {
+    width: 80vw;
+    margin: auto;  
+}
+
+
+.navbar-brand {
+    color: #0088ff;
+}
+
+.btn {
+    width: fit-content;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    cursor: pointer;
+    box-shadow: none;
+    border: 1px solid transparent;
+    font-weight: bold;
+}
+
+.btn.btn-danger {
+    background-color: red;
+    color: white;
+}
+
+.btn.btn-danger.btn-outlined {
+    border-color: red;
+    background: transparent;
+    color: red;
+}
+
+.btn.btn-danger.btn-outlined:hover {
+    background-color: red;
+    color: white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.upload_form {
+    padding: 10px 0 10px 0;
+}
+
+form {
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-input-label {
+    display: inline-block;
+    text-align: center;
+    width: fit-content;
+    padding: 10px;
+    border: 2px solid var(--primary);
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.file-input-label:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.error-panel {
+    color: var(--error);
+    width: fit-content;
+    /*max-width: 300px;*/
+    text-align: center;
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid var(--error);
+    border-radius: 5px;
+}
+
+.progress-bar {
+    height: 5px;
+    width: 100%;
+    margin: 6px 0 6px 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar .progress-bar-content {
+    height: 100%;
+    background-color: var(--primary);
+}
+
+.gallery  {
+    margin: auto;
+    /* width: 80vw; */
+    padding-top: 60px;
+}
+
+.gallery-header {
+    text-align: center;
+}
+
+.gallery-header h1 {
+    font-family: monospace;
+    font-size: 2rem;
+
+}
+
+.gallery-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 10px;
+    /* display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; */
+}
+
+.img-container {
+    position: relative;
+    width: 400px;
+    height: 300px; 
+    margin: 5px;
+    border-radius: 10px;
+    /* border: 0.1px solid var(--primary); */
+    background-size: cover;
+    cursor: pointer;
+    /* animation: apparition;
+    animation-duration: 1s; */
+}
+
+
+.img-del-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    color: #333;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.2);
+}   
+.img-del-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* .img-container.no-animate {
+    animation: none;
+}
+
+.animt {
+    animation: fromTop;
+    animation-duration: 1s;
+}
+
+.h {
+    visibility: hidden;
+} */
+
+.image-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 2;
+    overflow: scroll;
+
+    width: 100%;
+    height: 100%;
+    padding: 20px 0 20px 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.image-modal img {
+    border-radius: 20px;
+    margin: auto;
+    z-index: 2;
+    width: 70vw;
+
+    /* width: 100%;
+    max-width: 100%;
+    max-height: 100%; */
+
+    animation: fromTop;
+    animation-duration: 0.3s;
+}
+
+.min-height-full {
+    height: 100vh;
+}
+
+@keyframes fromTop {
+    0% {
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+
+    /* 70% {
+        transform: translateY(100px);
+        opacity: 0.4;
+    } */
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes apparition {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@media all and (max-width: 1550px) {
+    .container {
+        width: 90vw
+    }
+}
+
+@media all and (max-width: 1400px) {
+    .img-container {
+        width: 30vw;
+    }
+
+    .container {
+        width: 95vw
+    }
+}
+
+@media all and (max-width: 850px) {
+    .image-modal img {
+        width: 90vw;
+    }
+
+    .img-container {
+        width: 90vw;
+        height: 67.5vw;
+    }
+
+    .container {
+        width: 90vw;
+    }
+}
