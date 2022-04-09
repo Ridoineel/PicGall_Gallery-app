@@ -1,8 +1,9 @@
 import {useState, useEffect} from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
 import UploadForm from "../uploadForm"
 import ImageModal from "../imageModal";
-import axios from "axios";
+import env from "../../env";
 
 function Gallery() {
     let [images, setImages] = useState([]);
@@ -27,7 +28,7 @@ function Gallery() {
 
         if (confirmation) {
             try {
-                res = await axios.delete("http://localhost:8080/images");
+                res = await axios.delete(env.BACKEND_DOMAIN + "/images");
                 
                 if (res.status === 200) {
                     setImages([])
@@ -49,7 +50,7 @@ function Gallery() {
         imgFileName = imgUrl.split("/").pop();
 
         try {
-            res = await axios.delete("http://localhost:8080/images/" + imgFileName);
+            res = await axios.delete(env.BACKEND_DOMAIN + "/images/" + imgFileName);
             
             if (res.status === 200) {
                 // remove image url in iamges_cp
@@ -72,7 +73,7 @@ function Gallery() {
             let imagesList;
 
             try {
-                res = await axios.get("http://localhost:8080/images");
+                res = await axios.get(env.BACKEND_DOMAIN + "/images");
                 
                 if (res.status === 200) {
                     imagesList = res.data

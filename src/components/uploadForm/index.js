@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import ProgressBar from "../progressBar";
+import env from "../../env";
 
 
 function UploadForm(props) {
@@ -31,7 +32,7 @@ function UploadForm(props) {
                 fd.append("image", selectedFile, selectedFile.name);
 
                 try {
-                    res = await axios.post("http://localhost:8080/images", fd, {
+                    res = await axios.post(env.BACKEND_DOMAIN + "/images", fd, {
                         onUploadProgress: progressEvent => {
                             console.log(Math.round((progressEvent.loaded / progressEvent.total)*100) + "%" )
                             setProgressValue(Math.round((progressEvent.loaded / progressEvent.total)*100));
