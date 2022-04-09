@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import { motion } from "framer-motion";
 import UploadForm from "../uploadForm"
 import ImageModal from "../imageModal";
 import axios from "axios";
@@ -9,28 +10,33 @@ function Gallery() {
     let [deletionAction, setDeletionAction] = useState(0);
 
     const handleModalReqClick = (event) => {
-        let image = event.target.parentNode.getAttribute("image");
+        let image = event.target.getAttribute("image");
 
         if (image) {
             setModal(<ImageModal url={image} setModal={setModal} />)
         }
+
+        console.log(images)
     }
 
 
 
     const deleteAllHandleClick = async (event) => {
         // delete all images requests
+        let confirmation = true
         let res;
 
-        try {
-            res = await axios.delete("http://localhost:8080/images");
-            
-            if (res.status === 200) {
-                setImages([])
-            }
-        } catch (error) {
-            console.log(error);
-        }   
+        if (confirmation) {
+            try {
+                res = await axios.delete("http://localhost:8080/images");
+                
+                if (res.status === 200) {
+                    setImages([])
+                }
+            } catch (error) {
+                console.log(error);
+            }   
+        }
     }
 
     const deleteOneHandleClick = async (event) => {
@@ -105,38 +111,31 @@ function Gallery() {
             </div>
             
             <div className="gallery-body">
-                {images.map((image, index) => {
-                    return (
-                        <div 
-                            className="img-container"
-                            image={image}
-                            imgindex={index}
-                            key={index}
-                            style={{
-                                backgroundImage: `url(${image})`
-                            }}
+                {images.map((image, index) => (
+                    <motion.div 
+                        layout
+                        initial={{opacity: 0.85}}
+                        whileHover={{scale: 1.02, opacity: 1}}
+                       
+                        className="img-container"
+                        image={image}
+                        imgindex={index}
+                        key={index}
+                        onClick={handleModalReqClick}
+                        style={{
+                            backgroundImage: `url(\"${image}\")`
+                        }}
+                    >
+                        {/* deletion button */}
+                        <span 
+                            imgindex={index} 
+                            onClick={deleteOneHandleClick}
+                            className="btn img-del-button"
                         >
-                        
-                            {/* cover container */}
-
-                            <div 
-                                className="img-container-cover"
-                                onClick={handleModalReqClick}
-                            >
-                            </div>   
-
-                             {/* deletion button */}
-
-                            <span 
-                                imgindex={index} 
-                                onClick={deleteOneHandleClick}
-                                className="btn img-del-button"
-                            >
-                                x
-                            </span>                         
-                        </div>
-                    )
-                })}
+                            x
+                        </span>                         
+                    </motion.div>
+                ))}
             </div>
             {modal}
         </div>
