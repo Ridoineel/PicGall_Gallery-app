@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import ProgressBar from "../progressBar";
 
 
 function UploadForm(props) {
     let [file, setFile] = useState(null);
     let [error, setError] = useState(null);
+    let [progressValue, setProgressValue] = useState(0);
     let [images, setImages] = props.imagesState;
 
     const types = ["image/png", "image/jpeg", "image/gif"];
@@ -28,7 +30,12 @@ function UploadForm(props) {
                 fd.append("image", selectedFile, selectedFile.name);
 
                 try {
-                    res = await axios.post("http://localhost:8080/images", fd);
+                    res = await axios.post("http://localhost:8080/images", fd, {
+                        onUploadProgress: progressEvent => {
+                            console.log(Math.round((progressEvent.loaded / progressEvent.total)*100) + "%" )
+                            setProgressValue(Math.round((progressEvent.loaded / progressEvent.total)*100));
+                        }
+                    });
                     imgUrl = res.data.image_url;
 
                     setImages([imgUrl, ...images]);
@@ -56,6 +63,8 @@ function UploadForm(props) {
 
                 {error && <div className="error-panel">{error}</div>}
                 {file && <div>{file.name}</div>}
+
+                {progressValue ? <ProgressBar width={progressValue+"%"} /> : null}
             </form>
         </div>      
     )
