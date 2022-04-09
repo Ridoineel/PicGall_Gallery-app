@@ -7,7 +7,6 @@ import axios from "axios";
 function Gallery() {
     let [images, setImages] = useState([]);
     let [modal, setModal] = useState(null);
-    let [deletionAction, setDeletionAction] = useState(0);
 
     const handleModalReqClick = (event) => {
         let image = event.target.getAttribute("image");
@@ -122,7 +121,7 @@ function Gallery() {
                         key={index}
                         onClick={handleModalReqClick}
                         style={{
-                            backgroundImage: `url(\"${image}\")`
+                            backgroundImage: `url("${image}")`
                         }}
                     >
                         {/* deletion button */}

@@ -16,9 +16,6 @@ const ImageModal = (props) => {
 
         if (tagName === "img") {
             // hidde modal
-            let modal = document.getElementsByClassName("image-modal")[0];
-            
-            
             props.setModal(null)
         }
     }
@@ -30,7 +27,7 @@ const ImageModal = (props) => {
             onDoubleClick={handleDoubleClick} 
             onClick={handleClick}
         >
-            <img src={props.url} />
+            <img src={props.url} alt="extended img" />
         </div>
     )
 }
