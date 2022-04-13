@@ -1,5 +1,5 @@
 # Gallery app
-> make with React.js and Node.js
+> made with React.js and Node.js
 
 ![gallery-app UI](/frontend/src/assets/images/gallery-app-ui.gif)
 <center>Gallery App UI motion</center>
